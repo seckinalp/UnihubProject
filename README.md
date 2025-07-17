@@ -1,7 +1,5 @@
 # UniHub: Assessment Builder \& Educational Communication Platform
 
-## Team Members - Software Quartet
-
 ## Motivation
 
 Our project’s aim is to solve various problems students and academicians in universities are facing throughout courses. It is addressing the challenging tasks of managing, creating and analyzing educational content.  The motivation behind this project is the increasing complexity of educational tasks such as: creating assessments and solutions keys to these assessments online, providing a stable communication and collaboration between students and educators, keeping educational materials for archival means and analyzing the quantities of this course like grades, attendances, grades etc.
