@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {%load static%}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'create-question.css' %}">
+{% endblock %}
+    {% block title %}{% endblock %}
+    {% block content %}
+    <div class="question-form">
+      <form method="post">
+        {% csrf_token %}
+        <div class="prompt-area">
+        <label for="prompt">Enter prompt:</label>
+        <input type="textarea" id="prompt" name="prompt" />
+        </div>
+        <div class="answer-area">
+        <label for="answer">Enter answer:</label>
+        <input type="textarea" id="answer" name="answer" />
+        </div>
+        <div class="category-area">
+        <label for="category">Select category:</label>
+        <select id="category" name="category">
+          <option value="" disabled>Select a category</option>
+          {% for course in courses %}
+          <option value="{{course}}">{{course}}</option>
+          {% endfor %}
+        </select>
+        </div>
+        <div class="difficulty-area">
+        <label for="difficulty">Select difficulty</label>
+        <select id="difficulty" name="difficulty">
+          <option value="" disabled>Select difficulty</option>
+          <option value="Easy">Easy</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Difficult">Difficult</option>
+        </select>
+      </div>
+        <div class="submit-button">
+        <input type="submit" value="Create New Question" />
+        </div>
+      </form>
+    </div>
+    {% endblock %}
+

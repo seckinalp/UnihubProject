@@ -1,0 +1,85 @@
+/* Style for the assessment detail container */
+.assessment-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for the assessment title */
+.assessment-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style for the assessment details section */
+.assessment-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style for the question list title */
+.question-list-title {
+    margin-bottom: 10px;
+}
+
+/* Style for the question list */
+.question-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Style for each question box */
+.question-list-object {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for the question details */
+.question-details {
+    display: inline-block;
+}
+
+/* Style for the add question button */
+.assessment-add-question-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style for the delete assessment button */
+.delete-assessment-button input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style for the export assessment form */
+.export-assessment-form {
+    margin-top: 20px;
+}
+
+/* Style for the select format dropdown */
+.select-format select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Style for the export button */
+.export-button button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

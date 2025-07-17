@@ -1,0 +1,59 @@
+{% extends "layout.html" %} {%load static%}
+
+ {% block styles %}
+<link rel="stylesheet" href="{% static 'new-assessment.css' %}">
+{% endblock %}
+
+{% block title %}
+    Assign Assessment
+{% endblock %}
+
+{% block content %}
+    <div class="assign-title">
+        <h2>Assign Assessment</h2>
+    </div>
+    <div class="assessment-details">
+        <div class="assessment-name">
+        <p>Name: {{assessment.name}}</p>
+        </div>
+        <div class="assessment-course">
+        <p>Course: {{assessment.course}}</p>
+        </div>
+        <div class="assessment-question_count">
+        <p>Question Number: {{question_count}}</p>
+        </div>
+        <div class="question-list-title">
+        <p>Questions:</p>
+        </div>
+        <div class="question-list">
+        <ul>
+            {% for question in questions %}
+            <div class="question-list-object">
+            <li>
+                <div class="question-details">
+                <a href="/question-detail/{{question.id}}">
+                    Prompt: {{question.prompt}}, Difficulty: {{question.difficulty}}
+                </a>
+                </div>
+            </li>
+        </div>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="assign-form">
+        <form method="post">
+            {% csrf_token %}
+        <div class="start-date-select">
+            <label for="start-date">Start Date:</label>
+            <input id="start-date" name="start-date" type="date" placeholder="MM/DD/YY" required/>
+        </div>
+        <div class="end-date-select">
+            <label for="start-date">End Date:</label>
+            <input id="end-date" name="end-date" type="date" placeholder="MM/DD/YY" required/>
+        </div>
+        <div class="assign-button">
+            <input type="submit" value="Assign to relevant course"/>
+        </div>
+    </form>
+    </div>
+{% endblock %}

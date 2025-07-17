@@ -1,0 +1,156 @@
+{% extends "layout.html" %}
+{%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+{% endblock %}
+
+
+{% block page_title %} Register {% endblock %} 
+
+
+{% block content %}
+<h1>Register</h1>
+<hr />
+
+<form method="post">
+  {% csrf_token %} {%if error%}
+  <div class="alert alert-danger">{{error}}</div>
+  {%endif%}
+  <div class="mb3">
+    <label for="name" class="form-label" required>Name</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      class="form-control"
+      required
+      value="{%if name %} {{name}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="id_number" class="form-label" required>id</label>
+    <input
+      type="number"
+      name="id_number"
+      id="id_number"
+      class="form-control"
+      required
+      value="{%if id %} {{id}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="department" class="form-label" required>Department</label>
+    <input
+      type="text"
+      name="department"
+      id="department"
+      class="form-control"
+      required
+      value="{%if id %} {{id}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="year" class="form-label" required>Year</label>
+    <input
+      type="number"
+      name="year"
+      id="year"
+      class="form-control"
+      required
+      value="{%if Student_id %} {{Student_id}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="username" class="form-label" required>Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      class="form-control"
+      required
+      value="{%if username %} {{username}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="email" class="form-label">email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      class="form-control"
+      required
+      value="{%if email %} {{email}} {%endif%}"
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      class="form-control"
+      required
+    />
+  </div>
+
+  <div class="mb3">
+    <label for="password" class="form-label">Re-Password</label>
+    <input
+      type="password"
+      name="repassword"
+      id="repassword"
+      class="form-control"
+      required
+    />
+  </div>
+
+  <div class="mb3">
+    <label class="form-label">Courses</label>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="courses" id="cs101" value="cs101">
+      <label class="form-check-label" for="courses1">
+        CS101
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="courses" id="cs102" value="cs102">
+      <label class="form-check-label" for="courses2">
+        CS102
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="courses" id="cs223" value="cs223">
+      <label class="form-check-label" for="courses3">
+        CS223
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="courses" id="cs224" value="cs224">
+      <label class="form-check-label" for="courses4">
+        CS224
+      </label>
+    </div>
+  </div>
+  
+  <div class="mb3">
+    <label for="role" class="form-label">Role</label>
+    <select name="role" id="role" class="form-control" required>
+    
+      <option value="admin">Admin</option>
+      <option value="teacher">Teacher</option>
+      <option value="student">Student</option>
+
+    </select>
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+{% endblock %}

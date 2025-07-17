@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assign-assesment.css' %}">
+{% endblock %}
+
+
+{% block page_title %} Assign Assesment {% endblock %} 
+
+{% block content %}
+
+{%if error%}
+      <div class="alert alert-danger">{{error}}</div>
+{%endif%}
+    <div class="grade-title">
+        <h2>Grades</h2>
+    </div>
+
+    <div class="grades-container">
+        {% for course in courses %}
+            <h2>{{course.code}}</h2>
+            {%for grade in grades%}
+            {% if grade.course == course %}
+                <p>{{grade.description}}: {{grade.value}}/100</p>
+            {% endif %}
+            {%endfor%}
+        {%endfor%}
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'new-assessment.css' %}">
+{% endblock %}
+
+{% block title %}
+    New Assessment
+{% endblock %}
+
+{% block content %}
+<div class="assessment-container">
+    <div class="assessment-title">
+    <h2>New Assessment</h2>
+    </div>
+    <div class="assessment-form-area">
+    <form method="post">
+        {% csrf_token %}
+        <div class="assessment-name-area">
+        <label for="name">Enter a title:</label>
+        <input type="text" name="name" id="name" required/>
+        </div>
+        <div class="assessment-course-area">
+        <label for="course">Select course</label>
+        <select id="course" name="course">
+            <option value="" disabled>Select a course</option>
+            {% for course in courses %}
+            <option value={{course}}>{{course}}</option>
+            {% endfor %}
+        </select>
+    </div>
+        <div class="submit-button">
+        <input type="submit" value="Next"/>
+        </div>
+        <div class="reset-button">
+        <input type="reset" value="Cancel"/>
+        </div>
+    </form>
+</div>
+</div>
+    
+{% endblock %}

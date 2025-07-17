@@ -1,0 +1,64 @@
+/* Styles for the assessment detail page */
+.assessment-detail-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.assessment-detail-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.assessment-detail-page p {
+    margin-bottom: 10px;
+}
+
+/* Styles for the list of questions */
+.assessment-detail-page ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.assessment-detail-page li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the link to the question detail page */
+.assessment-detail-page li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.assessment-detail-page li a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for the form to remove a question */
+.assessment-detail-page form {
+    display: inline;
+}
+
+/* Styles for the add question form */
+.assessment-detail-page #question-add {
+    margin-top: 20px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.assessment-detail-page input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.assessment-detail-page input[type="submit"]:hover {
+    background-color: #0056b3;
+}

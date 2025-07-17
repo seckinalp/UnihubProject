@@ -1,0 +1,96 @@
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Styles for the main form container */
+form {
+  background: white;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+/* Form field styles */
+.label, input, select, .form-check-label {
+  display: block;
+  width: 100%;
+}
+
+.label {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.form-check-label {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  user-select: none; /* Prevent text selection */
+}
+
+/* Button styling */
+button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004494;
+}
+
+/* Alert message styles */
+.alert {
+  padding: 10px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  body {
+      padding: 10px;
+  }
+
+  form {
+      padding: 10px;
+  }
+}

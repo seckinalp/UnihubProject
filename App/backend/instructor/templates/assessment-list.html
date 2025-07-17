@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////
+{% extends "layout.html" %} {%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assessment-list.css' %}">
+{% endblock %}
+
+{% block title %}
+    Assessment List
+{% endblock %}
+
+{% block content %}
+    <h1>Assessment List</h1>
+    <div class="all-assessment">
+    <ul>
+        {% for assessment in assessments %}
+        <a href="/assessment-detail/{{assessment.assessment_id}}" class="assessment-link">
+            <div class="single-assessment">
+                <h3>Name: {{assessment.name}}</h3>
+                <p>Course: {{assessment.course}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

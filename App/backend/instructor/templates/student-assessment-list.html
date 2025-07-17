@@ -1,0 +1,38 @@
+{% extends "layout.html" %} {%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assessment-list.css' %}">
+{% endblock %}
+
+{% block title %}
+    Assessment List
+{% endblock %}
+
+{% block content %}
+    <h1>Assessment List</h1>
+    <div class="all-assessment">
+    <ul>
+        {% for assessment in assessments %}
+            <div class="single-assessment">
+                <h3>Name: {{assessment.name}}</h3>
+                <p>Course: {{assessment.course}}</p>
+                <p>Start Date: {{assessment.start_date}}</p>
+                <p>End Date: {{assessment.end_date}}</p>
+                <div class="export-assessment-form">
+                    <form action="{{assessment.assessment_id}}/export" method="post">
+                        {% csrf_token %}
+                        <div class="select-format">
+                        <select name="format">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">DOCX</option>
+                        </select>
+                    </div>
+                        <div class="export-button">
+                        <button type="submit">Export Assessment</button>
+                        </div>
+                    </form>
+            </div>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

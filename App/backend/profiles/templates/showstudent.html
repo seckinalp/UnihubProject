@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'show.css' %}">
+{% endblock %}
+
+
+{% block page_title %} Show Student Profile {% endblock %} 
+
+
+{% block content %}
+<div class="profile-container">
+  <h1>Profile</h1>
+  <div class="profile-info">
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>ID:</strong> {{ student.id_number }}</p>
+    <p><strong>Department:</strong> {{ student.department }}</p>
+    <p><strong>Year:</strong> {{ student.year }}</p>
+    <p><strong>Email:</strong> {{ student.user.email }}</p>
+    <p><strong>Courses:</strong>
+      {% if student.courses %}
+          <ul>
+              {% for course in student.courses %}
+                  <li>{{ course|upper }}</li>
+              {% endfor %}
+          </ul>
+      {% else %}
+          No courses listed.
+      {% endif %}
+  </p>
+</div>
+  <a href="{% url 'edit' %}" class="btn">Edit Profile</a>
+</div>
+{% endblock %}

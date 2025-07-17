@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'calendar.css' %}">
+{% endblock %}
+
+{% block page_title %} Calendar {% endblock %} 
+
+{% block content %}
+    <h2>Select Year and Month</h2>
+    <form action="" method="get" id="calendarForm">
+        <select name="year" onchange="document.getElementById('calendarForm').submit();">
+            {% for yr in years %}
+                <option value="{{ yr }}" {% if yr == year %}selected{% endif %}>{{ yr }}</option>
+            {% endfor %}
+        </select>
+        <select name="month" onchange="document.getElementById('calendarForm').submit();">
+            {% for mo in months %}
+                <option value="{{ mo }}" {% if mo == month %}selected{% endif %}>
+                    {{ mo}}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+    <h2>{{ year }}-{{ month }}</h2>
+    <table>
+        <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+        </tr>
+        {% for week in calendar %}
+            <tr>
+                {% for day, events in week %}
+                    <td class="{% if events %}event-day{% else %}no-event-day{% endif %}">
+                        <div class="date-number">{{ day }}</div>
+                        {% for event in events %}
+                            <a class="event-title" href="{% url 'event_detail' event.id %}">
+                                {{ event.title }}
+                            </a>
+                        {% endfor %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

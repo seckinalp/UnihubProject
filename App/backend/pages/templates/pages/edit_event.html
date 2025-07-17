@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Edit Event</h2>
+<form method="post">
+	{% csrf_token %} {{ form.as_p }}
+	<button type="submit" class="btn btn-success">Save changes</button>
+</form>
+
+{% load group_tags %} {%if request.user|has_group:"student"%}
+<a href="{% url 'all_student_events' %}" class="btn btn-primary">Cancel</a>
+{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+<a href="{% url 'all_teacher_events' %}" class="btn btn-primary">Cancel</a>
+{%endif%} {% endblock content %} {% block page_title %}Chat{% endblock page_title %}

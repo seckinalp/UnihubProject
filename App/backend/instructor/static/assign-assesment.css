@@ -1,0 +1,64 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Error alert styling */
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Grades section title styling */
+.grade-title h2 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Container for all grades */
+.grades-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* Course title styling */
+.grades-container h2 {
+    color: #2a5298;
+    font-size: 20px;
+    border-bottom: 1px solid #e3e3e3;
+    padding-bottom: 5px;
+}
+
+/* Grade description and value styling */
+.grades-container p {
+    font-size: 16px;
+    color: #666;
+    margin-left: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .grades-container {
+        padding: 10px;
+    }
+
+    .grade-title h2 {
+        font-size: 20px;
+    }
+}

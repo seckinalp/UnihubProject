@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'question-list.css' %}">
+{% endblock %}
+
+
+{% block page_title %}  Question List {% endblock %} 
+
+{%block content%}
+<div class="question-list-container">
+  <div class="question-list-title">
+  <h1>Question List</h1>
+  </div>
+  <div class="question-list">
+  <ul>
+    {% for question in questions %}
+    <li>
+      <a href="/question-detail/{{question.id}}">
+        <div class="question-info">
+          <div class="question-prompt">Prompt: {{question.prompt}}</div>
+          <div class="question-details">
+            <span class="question-category">Category: {{question.category}}</span>
+            <span class="question-difficulty">Difficulty: {{question.difficulty}}</span>
+          </div>
+        </div>
+      </a>
+    </li>
+    {%endfor%}
+  </ul>
+{% endblock %}

@@ -1,0 +1,57 @@
+/* question-list.css */
+
+/* Container for the entire question list */
+.question-list-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Title styling */
+  .question-list-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the list of questions */
+  .question-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Individual question styling */
+  .question-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  /* Link styling */
+  .question-list li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  /* Question prompt styling */
+  .question-prompt {
+    font-weight: bold;
+  }
+  
+  /* Question details styling */
+  .question-details {
+    margin-top: 5px;
+  }
+  
+  /* Category and difficulty styling */
+  .question-category, .question-difficulty {
+    margin-right: 10px;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .question-list-container {
+      width: 100%;
+      padding: 0 10px;
+    }
+  }
+  

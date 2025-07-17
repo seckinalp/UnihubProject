@@ -1,0 +1,19 @@
+<!-- templates/reports/view_reports.html -->
+{% extends "layout.html" %} {% block content %}
+<h2>View Reports</h2>
+<h3>Pending Reports</h3>
+<ul>
+	{% for report in reports %} {% if not report.is_done %}
+	<li>
+		{{ report.created_at }} - {{ report.user.username }} says: {{ report.content }}
+		<a href="{% url 'mark_report_done' report.id %}">Mark as Done</a>
+	</li>
+	{% endif %} {% endfor %}
+</ul>
+<h3>Completed Reports</h3>
+<ul>
+	{% for report in reports %} {% if report.is_done %}
+	<li>{{ report.created_at }} - {{ report.user.username }} says: {{ report.content }}</li>
+	{% endif %} {% endfor %}
+</ul>
+{% endblock %}

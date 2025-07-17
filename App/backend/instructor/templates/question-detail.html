@@ -1,0 +1,38 @@
+{% extends "layout.html" %} {%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'question-detail.css' %}">
+{% endblock %}
+
+{% block title %}
+    Question Detail
+{% endblock %}
+
+{% block content %}
+<div class="title">
+    <h2>Question Detail</h2>
+</div>
+<div class="question-detail">
+    <div class="prompt-area">
+    <p>Prompt: {{question.prompt}}</p>
+    </div>
+    <div class="answer-area">
+    <p>Answer: {{question.answer}}</p>
+    </div>
+    <div class="category-area">
+    <p>Category: {{question.category}}</p>
+    </div>
+    <div class="difficulty-area">
+    <p>Difficulty: {{question.difficulty}}</p>
+    </div>
+    <div class="form-area">
+    <form method="post">
+        {%csrf_token%}
+        <div class="delete-button">
+        <input type="submit" value="Delete Question"/>
+        </div>
+    </form>
+    </div>
+</div>
+    
+{% endblock %}

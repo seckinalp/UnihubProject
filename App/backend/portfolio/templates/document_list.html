@@ -1,0 +1,29 @@
+<!-- list_documents.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>List of Documents</h2>
+
+<!-- Category filter form -->
+<form method="get" action="{% url 'list_documents' %}" id="filterForm">
+    <select name="related_course" onchange="document.getElementById('filterForm').submit();">
+        <option value="">All Courses</option>
+        {% for key, name in courses %}
+            <option value="{{ key }}" {% if selected_course == key %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul>
+    {% for document in documents %}
+    <li>
+        {{ document.title }} - {{ document.related_course }}: {{ document.content }}<br>
+        <a href="{{ document.document_file.url }}" download>Download</a>
+        <a href="{% url 'delete_document' document.id %}" onclick="return confirm('Are you sure you want to delete this document?');">Delete</a>
+    </li>
+    {% empty %}
+    <li>No documents available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

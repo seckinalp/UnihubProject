@@ -1,0 +1,245 @@
+{% extends "layout.html" %} {% block content %}
+<div class="chat-container">
+	<div class="sidebar">
+		<h2>Users</h2>
+		<ul>
+			{% for user in users %}
+			<li><a href="{% url 'chat_with_user' user.username %}">{{ user.username }}</a></li>
+			{% empty %}
+			<li>No users available.</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="chat-area" {% if selected_user %}data-username="{{ selected_user.username }}"{% endif %}>
+		{% if selected_user %}
+		<h3>Chat with {{ selected_user.username }}</h3>
+		<div id="chat-log" class="messages">
+			{% for message in messages %}
+			<div class="message {% if message.sender.username == request.user.username %}sender{% else %}receiver{% endif %}" id="message-{{ message.id }}">
+				<div class="message-content">
+					<p><strong>{{ message.sender.username }}:</strong> {{ message.message }}</p>
+					{% if message.sender.username == request.user.username %}
+					<button onclick="deleteMessage({{ message.id }})" class="delete-btn">X</button>
+					{% endif %}
+				</div>
+			</div>
+			{% empty %}
+			<p>No messages yet.</p>
+			{% endfor %}
+		</div>
+		<form method="post" action="{% url 'chat_with_user' selected_user.username %}">
+			{% csrf_token %}
+			<textarea name="message" placeholder="Type your message here..." required></textarea>
+			<button type="submit">Send</button>
+		</form>
+		{% else %}
+		<p>Select a user to start chatting.</p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %} {% block styles %}
+<style>
+	body {
+		font-family: "Arial", sans-serif;
+		color: #333;
+		background-color: #edf0f5;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	.chat-container {
+		width: 95%;
+		max-width: 900px;
+		height: calc(100vh - 200px); /* Adjust height to take navbar into account */
+		margin: 20px auto;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		background-color: #fff;
+		border-radius: 8px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: row; /* Ensure sidebar and chat area are stacked */
+	}
+
+	.sidebar {
+		background-color: #2c3e50;
+		color: #fff;
+		padding: 20px;
+	}
+
+	.sidebar h2 {
+		color: #f39c12;
+	}
+
+	.sidebar ul {
+		list-style-type: none;
+		padding: 0;
+		overflow-y: auto;
+		flex-grow: 1;
+	}
+
+	.sidebar ul li a {
+		text-decoration: none;
+		color: #bdc3c7;
+		display: block;
+		padding: 10px;
+		transition: background-color 0.3s, color 0.3s;
+	}
+
+	.sidebar ul li a:hover,
+	.sidebar ul li a.active {
+		background-color: #3498db;
+		color: #fff;
+	}
+
+	.chat-area {
+		flex-grow: 1;
+		padding: 20px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.message {
+		margin: 10px 0;
+		padding: 10px;
+		background-color: #3498db;  /* Blue background for message */
+		color: #fff;
+		border-radius: 15px;
+		width: fit-content;
+		max-width: 80%;
+		display: flex;  /* Make message a flex container */
+		justify-content: space-between;  /* Space between text and button */
+		align-items: center;  /* Align items vertically */
+	}
+	
+	.message-content {
+		display: flex;
+		align-items: center; /* This ensures vertical alignment */
+		justify-content: space-between; /* Keeps content and button spaced apart if needed */
+		width: 100%; /* Ensures the container takes full width of the message */
+	}
+	
+	.message-content p {
+		margin: 0; /* Removes default paragraph margin */
+		flex-grow: 1; /* Allows text to take up necessary space */
+	}
+	
+	.delete-btn {
+		margin-left: 10px; /* Adds some space between the text and the button */
+		padding: 4px 8px; /* Adjust padding as needed to fit the design */
+		font-size: 14px; /* Ensures font size is aligned with the text if needed */
+		height: fit-content; /* Adjusts height based on content */
+		align-self: center; /* Aligns button vertically to center */
+	}
+	.sender {
+		align-self: flex-end;
+		background-color: #3498db;  /* Blue background for sender */
+	}
+	
+	.receiver {
+		align-self: flex-start;
+		background-color: #95a5a6;  /* Grey background for receiver */
+	}
+	
+	.messages {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		background-color: #ecf0f1;
+		padding: 20px;
+		margin-bottom: 20px;
+		border-radius: 8px;
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+		padding: 10px;
+		border: none;
+		border-radius: 8px;
+		margin-bottom: 10px;
+	}
+
+	button {
+		padding: 10px 20px;
+		background-color: #16a085;
+		color: white;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	button:hover {
+		background-color: #1abc9c;
+	}
+
+
+</style>
+
+{% endblock styles %}
+
+{% block scripts %}
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const chatArea = document.querySelector('.chat-area');
+		if (!chatArea.dataset.username) {
+			console.error('No user selected for chat.');
+			return;  // Stop the script if no user is selected
+		}
+		const username = chatArea.dataset.username;  // The current user's username
+		const currentUser = '{{ request.user.username }}'; // Django template variable for the logged-in user
+	
+		let lastRefresh = new Date().toISOString();
+	
+		setInterval(() => {
+			$.ajax({
+				url: `/chat/${username}/fetch/`,
+				type: 'GET',
+				data: { 'last_refresh': lastRefresh },
+				success: function(response) {
+					if (response.status === 'success' && response.messages.length > 0) {
+						const chatLog = document.getElementById('chat-log');
+						response.messages.forEach(function(message) {
+							const messageDiv = document.createElement('div');
+							messageDiv.className = 'message ' + (message.sender === currentUser ? 'sender' : 'receiver');
+							messageDiv.innerHTML = `<p><strong>${message.sender}:</strong> ${message.message}</p>`;
+	
+							chatLog.appendChild(messageDiv);
+						});
+						lastRefresh = new Date().toISOString(); // Update last refresh time only after successful fetch
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error('Error fetching messages:', error);
+				}
+			});
+		}, 1000); // Fetch new messages every 2 seconds
+	});
+	</script>
+
+	<script>
+		function deleteMessage(messageId) {
+			if (confirm('Are you sure you want to delete this message?')) {
+				$.ajax({
+					url: '/chat/delete_message/' + messageId + '/',
+					type: 'POST',
+					data: {
+						'csrfmiddlewaretoken': '{{ csrf_token }}',
+						'message_id': messageId
+					},
+					success: function(response) {
+						if (response.status === 'success') {
+							document.getElementById('message-' + messageId).remove();
+						} else {
+							alert('Error deleting message: ' + response.error);
+						}
+					},
+					error: function(xhr, status, error) {
+						alert('Error deleting message: ' + error);
+					}
+				});
+			}
+		}
+		</script>
+
+{% endblock scripts %}

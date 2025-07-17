@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block content %}
+<h2>{{ event.title }}</h2>
+<p>Date: {{ event.date|date:"M d, Y H:i" }}</p>
+<p>Location: {{ event.location }}</p>
+<p>Description: {{ event.description }}</p>
+
+<!-- Edit Button -->
+<a href="{% url 'edit_event' event.id %}" class="btn btn-primary">Edit Event</a>
+
+<!-- Delete Button -->
+<form action="{% url 'delete_event' event.id %}" method="post" style="display: inline">
+	{% csrf_token %}
+	<button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">
+		Delete Event
+	</button>
+</form>
+
+{% load group_tags %} {% if request.user|has_group:"student"%}
+<a href="{% url 'all_student_events' %}" class="btn btn-primary">Back to all events</a>
+{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+<a href="{% url 'all_student_events' %}" class="btn btn-primary">Back to all events</a>
+{%endif%} {% endblock content %}

@@ -1,0 +1,7 @@
+node_modules
+# Python bytecode files
+__pycache__/
+*.pyc
+App/backend/backend/__pycache__/wsgi.cpython-312.pyc
+App/backend/backend/__pycache__/urls.cpython-312.pyc
+App/backend/backend/__pycache__/settings.cpython-312.pyc

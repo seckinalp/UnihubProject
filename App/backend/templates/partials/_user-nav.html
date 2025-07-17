@@ -1,0 +1,253 @@
+<nav class="navbar navbar-expand-lg bg-danger navbar-dark">
+	<div class="container">
+		<a href="" class="navbar-brand">Unihub</a>
+
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarNav"
+			aria-controls="navbarNav"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				{% load group_tags %} {% if request.user|has_group:"student"%}
+				<li class="nav-item">
+					<a href="/profile" class="nav-link {% if active_page == 'profile' %}active{% endif %}"
+						><i class="fa-solid fa-circle-user"></i> Welcome, {{user.username}}</a
+					>
+				</li>
+				{%endif%}
+				<li class="nav-item">
+					<a href="/chat/" class="nav-link {% if active_page == 'chat' %}active{% endif %}"
+						><i class="fa-solid fa-comments"></i> Chat</a
+					>
+				</li>
+				{% load group_tags %}{% if request.user|has_group:"student"%}
+				<li class="nav-item">
+					<a
+						href="/student-assessment-list"
+						class="nav-link {% if active_page == 'assesments' %}active{% endif %}"
+						><i class="fa-solid fa-comments"></i> Assessment</a
+					>
+				</li>
+				{%endif%} {% load group_tags %}{% if request.user|has_group:"student"%}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events' %}active{% endif %}"
+						id="eventsDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						<i class="fa-solid fa-calendar"></i> Events
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+						<li>
+							<a href="/events_student/add" class="dropdown-item">Add Event</a>
+						</li>
+						<li>
+							<a href="/events_student/all" class="dropdown-item">All Events</a>
+						</li>
+						<li>
+							<a href="/calendar" class="dropdown-item">Calendar</a>
+						</li>
+					</ul>
+				</li>
+				{%endif%}{% load group_tags %} {% if request.user|has_group:"student"%}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events' %}active{% endif %}"
+						id="eventsDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						<i class="fa-solid fa-calendar"></i> Portfolio
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+						<li>
+							<a href="/documents/upload" class="dropdown-item">Upload Document</a>
+						</li>
+						<li>
+							<a href="/documents" class="dropdown-item">All Documents</a>
+						</li>
+						<li>
+							<a href="/" class="dropdown-item">Create Portfolio</a>
+						</li>
+					</ul>
+				</li>
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"student"%}
+				<li class="nav-item">
+					<a href="/student-grades" class="nav-link {% if active_page == 'grades' %}active{% endif %}"
+						><i class="fa-solid fa-pen-to-square"></i> Grades</a
+					>
+				</li>
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"student"%}
+				<li class="nav-item">
+					<a href="/analysis" class="nav-link {% if active_page == 'analysis' %}active{% endif %}"
+						><i class="fa-solid fa-magnifying-glass-chart"></i> Analysis</a
+					>
+				</li>
+
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+				<li class="nav-item">
+					<a
+						href="/profile_teacher"
+						class="nav-link {% if active_page == 'profile_teacher' %}active{% endif %}"
+						><i class="fa-solid fa-circle-user"></i> Welcome, {{user.username}}</a
+					>
+				</li>
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+				<li class="nav-item">
+					<a href="/chat/" class="nav-link {% if active_page == '/chat/' %}active{% endif %}"
+						><i class="fa-solid fa-comments"></i> Chat</a
+					>
+				</li>
+				{%endif%} {% load group_tags %}{% if request.user|has_group:"teacher"%}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events_teacher' %}active{% endif %}"
+						id="eventsDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						<i class="fa-solid fa-calendar"></i> Assesments
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+						<li>
+							<a href="/new-assessment" class="dropdown-item">Create Assesment</a>
+						</li>
+						<li>
+							<a href="/assessment-list" class="dropdown-item">All Assesments</a>
+						</li>
+					</ul>
+				</li>
+				{%endif%}{% load group_tags %}{% if request.user|has_group:"teacher"%}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events_teacher' %}active{% endif %}"
+						id="eventsDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						<i class="fa-solid fa-calendar"></i> Events
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+						<li>
+							<a href="/events_teacher/add" class="dropdown-item">Add Event</a>
+						</li>
+						<li>
+							<a href="/events_teacher/all" class="dropdown-item">All Events</a>
+						</li>
+						<li>
+							<a href="/calendar" class="dropdown-item">Calendar</a>
+						</li>
+					</ul>
+				</li>
+				{%endif%} {% load group_tags %}{% if request.user|has_group:"teacher"%}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events' %}active{% endif %}"
+						id="eventsDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+						<i class="fa-solid fa-calendar"></i> Manage Questions
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="eventsDropdown">
+						<li>
+							<a href="/create-question" class="dropdown-item">Create Question</a>
+						</li>
+						<li>
+							<a href="/question-list" class="dropdown-item">All Questions</a>
+						</li>
+					</ul>
+				</li>
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+				<li class="nav-item">
+					<a
+						href="/grade"
+						class="nav-link {% if active_page == 'grades_teacher' %}active{% endif %}"
+						><i class="fa-solid fa-pen-to-square"></i> Grades</a
+					>
+				</li>
+				{%endif%} {% if user.is_superuser%}
+				<li class="nav-item">
+					<a
+						href="/account/register"
+						class="nav-link {% if active_page == 'register' %}active{% endif %}"
+						><i class="fa-solid fa-magnifying-glass-chart"></i> Register a User</a
+					>
+				</li>
+				{%endif%} {% load group_tags %} {% if  user.is_superuser%}
+				<li class="nav-item">
+					<a href="/view-reports/" class="nav-link {% if active_page == 'reports' %}active{% endif %}"
+						><i class="fa-solid fa-magnifying-glass-chart"></i> Reports</a
+					>
+				</li>
+				{%endif%} 
+			</ul>
+			<ul class="navbar-nav ms-auto">
+				{% load group_tags %} {% if request.user|has_group:"student"%}
+				<li class="nav-item">
+					<a
+						href="/notifications"
+						class="nav-link {% if active_page == 'notifications' %}active{% endif %}"
+						><i class="fa-solid fa-bell"></i> Notifications</a
+					>
+				</li>
+				{%endif%} {% load group_tags %} {% if not user.is_superuser%}
+				<li class="nav-item">
+					<a href="/submit-report/" class="nav-link {% if active_page == 'report' %}active{% endif %}"
+						><i class="fa-solid fa-pen"></i> Report</a
+					>
+				</li>
+				{%endif%} {% load group_tags %} {% if request.user|has_group:"teacher"%}
+				<li class="nav-item">
+					<a
+						href="/notifications_teacher"
+						class="nav-link {% if active_page == 'notifications_teacher' %}active{% endif %}"
+						><i class="fa-solid fa-bell"></i> Notifications</a
+					>
+				</li>
+				{%endif%} {% load group_tags %}
+				<li class="nav-item dropdown">
+					<a
+						href="#"
+						class="nav-link dropdown-toggle {% if active_page == 'events' %}active{% endif %}"
+						id="profileDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+					>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="profileDropdown">
+						<li>
+							{% if request.user|has_group:"student"%}
+							<a href="/profile/show" class="dropdown-item">Profile</a>
+							{%endif%} {% if request.user|has_group:"teacher"%}
+							<a href="/profile/showIns" class="dropdown-item">Profile</a>
+							{%endif%}
+						</li>
+						<li>
+							<a href="{% url 'user_logout' %}" class="dropdown-item">Logout</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

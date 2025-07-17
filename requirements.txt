@@ -1,0 +1,37 @@
+Github Clone Link:
+https://github.com/CS319-23-SP/T11-UniHub.git
+
+cd app
+cd backend
+
+
+For Mac/Linux: source env/bin/activate
+For Windows: env\scripts\activate
+
+pipenv install django
+pip install djangorestframework
+pip install django-cors-headers
+pip install reportlab
+pip install python-docx
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+
+pip3 List:
+
+asgiref==3.8.1
+channels==4.1.0
+chardet==5.2.0
+Django==5.0.6
+docx==0.2.4
+lxml==5.2.1
+pillow==10.3.0
+python-docx==1.1.2
+reportlab==4.2.0
+sqlparse==0.5.0
+typing_extensions==4.11.0
+tzdata==2024.1
+
+

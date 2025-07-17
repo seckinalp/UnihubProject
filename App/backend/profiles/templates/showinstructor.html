@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {%load static%}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'show.css' %}">
+{% endblock %}
+
+
+{% block page_title %} Show Instructor Profile {% endblock %} 
+
+{% block content %}
+<div class="profile-container">
+  <h1>Profile</h1>
+  <div class="profile-info">
+    <p><strong>Name:</strong> {{ instructor.name }}</p>
+    <p><strong>ID:</strong> {{ instructor.id_number }}</p>
+    <p><strong>Department:</strong> {{ instructor.department }}</p>
+    <p><strong>Email:</strong> {{ instructor.user.email }}</p>
+    <p><strong>Given Courses:</strong>
+      {% if instructor.courses %}
+          <ul>
+              {% for course in instructor.courses %}
+                  <li>{{ course|upper }}</li>
+              {% endfor %}
+          </ul>
+      {% else %}
+          No courses listed.
+      {% endif %}
+  </p>
+</div>
+  <a href="{% url 'editIns' %}" class="btn">Edit Profile</a>
+</div>
+{% endblock %}

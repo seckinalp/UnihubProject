@@ -1,0 +1,48 @@
+{% extends "layout.html" %} {%load static%}
+
+{% block title %}
+    Assign Assessment
+{% endblock %}
+
+{% block content %}
+
+{%if error%}
+      <div class="alert alert-danger">{{error}}</div>
+{%endif%}
+    <div class="grade-title">
+        <h2>Grade Students</h2>
+    </div>
+
+    <div class="grade-form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="course-select-container">
+                <select id="course-select" name="course-select">
+                    <option value="" disabled>Select Course</option>
+                    {%for course in courses%}
+                    <option value={{course}}>{{course}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="student-select-container">
+                <select id="student-select" name="student-select">
+                    <option value="" disabled>Select Student</option>
+                    {%for student in students%}
+                    <option value={{student.id_number}}>{{student.name}} / {{student.id}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div class="information-container">
+                <label for="information">Description:</label>
+                <input type="text" id="information" name="information">
+            </div>
+            <div class="grade-container">
+                <label for="grade">Grade:</label>
+                <input type="number" id="grade" name="grade">
+            </div>
+            <div class="submit-button">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+{% endblock %}

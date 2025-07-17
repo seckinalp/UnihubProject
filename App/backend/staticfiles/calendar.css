@@ -1,0 +1,100 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header styles */
+h2 {
+    color: #2c3e50;
+}
+
+/* Form styling */
+form {
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #ecf0f1;
+    color: #333;
+}
+
+td.event-day {
+    background-color: #e9f7fd;
+}
+
+td.no-event-day {
+    background-color: #fcfcfc;
+}
+
+.date-number {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+a.event-title {
+    display: block;
+    margin-top: 8px;
+    text-decoration: none;
+    color: #3498db;
+}
+
+a.event-title:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    select, button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 15px;
+    }
+}

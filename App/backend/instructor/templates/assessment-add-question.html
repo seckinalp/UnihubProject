@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% load static %}
+{% comment %} {% block styles %}
+    <link rel="stylesheet" href="{% static 'assessment-add-question.css' %}">
+{% endblock %} {% endcomment %}
+{% block title %}
+    Assessment Add Question 
+{% endblock %}
+
+{% block content %}
+<div class="assessment-detail-page">
+    <h1>Assessment Detail</h1>
+    <p>Name: {{ assessment.name }}</p>
+    <p>Course: {{ assessment.course }}</p>
+    <p>Question Number: {{ question_count }}</p>
+    <ul>
+      {% for question in assessment_questions %}
+        <li>
+          <a href="/question-detail/{{ question.id }}">Prompt: {{ question.prompt }}<br>Difficulty: {{ question.difficulty }}</a>
+          <br>
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="remove-question" value="{{ question.id }}">
+            <input type="submit" value="Remove from this assessment">
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+    <form method="post">
+      {% csrf_token %}
+      <select id="question-add" name="question-add">
+        {% for question_add in questions_add %}
+          <option value="{{ question_add.id }}">{{ question_add.prompt }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Add Question">
+    </form>
+  </div>
+{% endblock %}
